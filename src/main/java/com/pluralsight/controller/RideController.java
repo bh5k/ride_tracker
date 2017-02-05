@@ -8,13 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pluralsight.model.Ride;
+
 @Controller
 public class RideController {
 
 	@RequestMapping(value = "/rides", method = RequestMethod.GET)
-	public @ResponseBody List<String> getRides() {
-		List <String> rides = new ArrayList<>();
-		rides.add("Corner Canyon");
+	public @ResponseBody List<Ride> getRides() {
+		Ride ride = new Ride();
+		ride.setName("Corner Canyon");
+		ride.setDuration(120);
+		List <Ride> rides = new ArrayList<>();
+		rides.add(ride);
 		return rides;
 	}
 	

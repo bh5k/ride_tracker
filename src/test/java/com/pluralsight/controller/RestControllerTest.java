@@ -13,7 +13,7 @@ import org.junit.Test;
 
 public class RestControllerTest {
 
-	@Test(timeout=1000)
+	@Test(timeout=3000)
 	public void testGetRides() {
 		RestTemplate restTemplate = new RestTemplate();
 

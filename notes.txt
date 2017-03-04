@@ -1,25 +1,39 @@
-<dependency>
-	<groupId>org.springframework</groupId>
-	<artifactId>spring-jdbc</artifactId>
-	<version>4.3.6.RELEASE</version>
-</dependency>
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>6.0.5</version>
-</dependency>
+--------------Ride Controller--------------
 
+@RequestMapping(value = "/ride", method = RequestMethod.PUT)
+public @ResponseBody Ride createRide(@RequestBody Ride ride) {
+	return rideService.createRide(ride);
+}
 
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-	<property name="url" value="jdbc:mysql://localhost:3306/ride_tracker" />
-	<property name="username" value="root" />
-	<property name="password" value="password" />
-</bean>
+--------------Ride Service--------------
 
-<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-	<property name="dataSource" ref="dataSource" />
-</bean>
+Ride createRide(Ride ride);
 
-@Autowired
-private JdbcTemplate jdbcTemplate;
+@Override
+public Ride createRide(Ride ride) {
+	return rideRepository.createRide(ride);
+}
+
+--------------Ride Repository--------------
+
+Ride createRide(Ride ride);
+
+@Override
+public Ride createRide(Ride ride) {		
+	jdbcTemplate.update("insert into ride (name, duration) values (?,?)", ride.getName(), ride.getDuration());
+}
+
+--------------Ride Test--------------
+
+@Test(timeout=3000)
+public void testCreateRide() {
+	RestTemplate restTemplate = new RestTemplate();
+
+	Ride ride = new Ride();
+	ride.setName("Bobsled Trail");
+	ride.setDuration(33);
+	
+	restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
+	
+	System.out.println("Ride: " + ride);
+}

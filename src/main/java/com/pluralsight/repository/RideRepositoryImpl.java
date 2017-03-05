@@ -20,25 +20,25 @@ public class RideRepositoryImpl implements RideRepository {
 	
 	@Override
 	public Ride createRide(Ride ride) {		
-		//jdbcTemplate.update("insert into ride (name, duration) values (?,?)", ride.getName(), ride.getDuration());
+		jdbcTemplate.update("insert into ride (name, duration) values (?,?)", ride.getName(), ride.getDuration());
 		
-		SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
-		
-		insert.setGeneratedKeyName("id");
-		
-		Map<String, Object> data = new HashMap<>();
-		data.put("name", ride.getName());
-		data.put("duration", ride.getDuration());
-		
-		List<String> columns = new ArrayList<>();
-		columns.add("name");
-		columns.add("duration");
-		
-		insert.setTableName("ride");
-		insert.setColumnNames(columns);
-		Number key = insert.executeAndReturnKey(data);
-		
-		System.out.println(key);
+//		SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
+//		
+//		insert.setGeneratedKeyName("id");
+//		
+//		Map<String, Object> data = new HashMap<>();
+//		data.put("name", ride.getName());
+//		data.put("duration", ride.getDuration());
+//		
+//		List<String> columns = new ArrayList<>();
+//		columns.add("name");
+//		columns.add("duration");
+//		
+//		insert.setTableName("ride");
+//		insert.setColumnNames(columns);
+//		Number key = insert.executeAndReturnKey(data);
+//		
+//		System.out.println(key);
 		
 		return null;
 	}

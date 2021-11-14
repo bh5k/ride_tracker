@@ -15,3 +15,4 @@ target/m2e-wtp/web-resources/META-INF/maven/com.pluralsight/ride_tracker/pom.xml
 target/classes/log4j.properties
 target/m2e-wtp/web-resources/META-INF/maven/com.pluralsight/ride_tracker/pom.properties
 /target/
+.idea

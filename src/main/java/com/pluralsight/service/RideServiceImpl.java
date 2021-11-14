@@ -21,6 +21,6 @@ public class RideServiceImpl implements RideService {
 
 	@Override
 	public Ride createRide(Ride ride) {
-		return null;
+		return rideRepository.createRide(ride);
 	}
 }

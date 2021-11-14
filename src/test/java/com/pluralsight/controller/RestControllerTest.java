@@ -28,7 +28,7 @@ public class RestControllerTest {
 		}
 	}
 
-	@Test(timeout=3000)
+	@Test(timeout=30000)
 	public void testCreateRides() {
 		RestTemplate restTemplate = new RestTemplate();
 
